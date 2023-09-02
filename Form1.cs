@@ -35,6 +35,12 @@ namespace DnsExtract
         {
             InitializeComponent();
 
+            var link = "https://api.opennic.org/geoip";
+            //linkLabel1.LinkBehavior = LinkBehavior.HoverUnderline;
+            linkLabel1.Text = link;
+            linkLabel1.Links.Add(0, 0, link);
+            toolTip1.SetToolTip(linkLabel1, "Direct IP addresses of OpenNIC DNS");
+
             textBox1.MaxLength = Int32.MaxValue;
             textBox2.MaxLength = Int32.MaxValue;
             textBox5.Text = _defname + "[CNT]=";
@@ -277,6 +283,11 @@ namespace DnsExtract
         private void button8_Click(object sender, EventArgs e)
         {
             _shell.Open(textBox4.Text);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData.ToString());
         }
     }
 }
